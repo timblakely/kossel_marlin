@@ -538,7 +538,7 @@ void manage_heater()
   previous_millis_bed_heater = millis();
   #endif
 
-  #if TEMP_SENSOR_BED != 0
+  #if TEMP_SENSOR_BED != 0 && THERMAL_RUNAWAY_PROTECTION_BED_PERIOD
   
     #ifdef THERMAL_RUNAWAY_PROTECTION_PERIOD && THERMAL_RUNAWAY_PROTECTION_PERIOD > 0
       thermal_runaway_protection(&thermal_runaway_bed_state_machine, &thermal_runaway_bed_timer, current_temperature_bed, target_temperature_bed, 9, THERMAL_RUNAWAY_PROTECTION_BED_PERIOD, THERMAL_RUNAWAY_PROTECTION_BED_HYSTERESIS);

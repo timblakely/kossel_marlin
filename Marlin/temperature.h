@@ -172,8 +172,8 @@ void thermal_runaway_protection(int *state, unsigned long *timer, float temperat
 static int thermal_runaway_state_machine[3]; // = {0,0,0};
 static unsigned long thermal_runaway_timer[3]; // = {0,0,0};
 static bool thermal_runaway = false;
-  #if TEMP_SENSOR_BED != 0
-    static int thermal_runaway_bed_state_machine;
+  #if TEMP_SENSOR_BED != 0 && THERMAL_RUNAWAY_PROTECTION_BED_PERIOD
+  static int thermal_runaway_bed_state_machine;
     static unsigned long thermal_runaway_bed_timer;
   #endif
 #endif

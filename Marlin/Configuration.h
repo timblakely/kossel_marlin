@@ -25,7 +25,7 @@
 // startup. Implementation of an idea by Prof Braino to inform user that any changes made to this
 // build by the user have been successfully uploaded into firmware.
 #define STRING_VERSION_CONFIG_H __DATE__ " " __TIME__ // build date and time
-#define STRING_CONFIG_H_AUTHOR "(jcrocholl, Mini Kossel)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(blakely, Telta)" // Who made the changes.
 
 // SERIAL_PORT selects which serial port should be used for communication with the host.
 // This allows the connection of wireless adapters (for instance) to non-default port pins.
@@ -41,11 +41,11 @@
 // The following define selects which electronics board you have.
 // Please choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_BRAINWAVE_PRO
+  #define MOTHERBOARD BOARD_RAMPS_13_EFB
 #endif
 
 // Define this to set a custom name for your generic Mendel,
-#define CUSTOM_MENDEL_NAME "Kossel"
+#define CUSTOM_MENDEL_NAME "Telta5"
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
@@ -75,16 +75,17 @@
 #define DELTA_SEGMENTS_PER_SECOND 160
 
 // Center-to-center distance of the holes in the diagonal push rods.
-#define DELTA_DIAGONAL_ROD 213.5 // mm
+// #define DELTA_DIAGONAL_ROD 218.352147915 // mm, too small 
+#define DELTA_DIAGONAL_ROD 211.4082095 // mm, original telta
 
 // Horizontal offset from middle of printer to smooth rod center.
-#define DELTA_SMOOTH_ROD_OFFSET 143.275 // mm
+#define DELTA_SMOOTH_ROD_OFFSET 144.7 // mm
 
 // Horizontal offset of the universal joints on the end effector.
-#define DELTA_EFFECTOR_OFFSET 30.0 // mm
+#define DELTA_EFFECTOR_OFFSET 19.9 // mm
 
 // Horizontal offset of the universal joints on the carriages.
-#define DELTA_CARRIAGE_OFFSET 30.0 // mm
+#define DELTA_CARRIAGE_OFFSET 20.5 // mm
 
 // Horizontal distance bridged by diagonal push rods when effector is centered.
 #define DELTA_RADIUS (DELTA_SMOOTH_ROD_OFFSET-DELTA_EFFECTOR_OFFSET-DELTA_CARRIAGE_OFFSET)
@@ -160,7 +161,7 @@
 // The minimal temperature defines the temperature below which the heater will not be enabled It is used
 // to check that the wiring to the thermistor is not broken.
 // Otherwise this would lead to the heater being powered on all the time.
-#define HEATER_0_MINTEMP 5
+#define HEATER_0_MINTEMP 10
 #define HEATER_1_MINTEMP 5
 #define HEATER_2_MINTEMP 5
 #define BED_MINTEMP 0
@@ -198,9 +199,9 @@
 
 // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 // Ultimaker
-    #define  DEFAULT_Kp 22.2
-    #define  DEFAULT_Ki 1.08
-    #define  DEFAULT_Kd 114
+//    #define  DEFAULT_Kp 22.2
+//    #define  DEFAULT_Ki 1.08
+//    #define  DEFAULT_Kd 114
 
 // MakerGear
 //    #define  DEFAULT_Kp 7.0
@@ -211,6 +212,12 @@
 //    #define  DEFAULT_Kp 63.0
 //    #define  DEFAULT_Ki 2.25
 //    #define  DEFAULT_Kd 440
+
+// Telta
+    #define  DEFAULT_Kp 27.89
+    #define  DEFAULT_Ki 2.6
+    #define  DEFAULT_Kd 74.83
+
 #endif // PIDTEMP
 
 // Bed Temperature Control
@@ -286,8 +293,8 @@ your extruder heater takes 2 minutes to hit the target on heating.
 // uncomment the 2 defines below:
 
 // Parameters for all extruder heaters
-//#define THERMAL_RUNAWAY_PROTECTION_PERIOD 40 //in seconds
-//#define THERMAL_RUNAWAY_PROTECTION_HYSTERESIS 4 // in degree Celsius
+#define THERMAL_RUNAWAY_PROTECTION_PERIOD 30 //in seconds
+#define THERMAL_RUNAWAY_PROTECTION_HYSTERESIS 4 // in degree Celsius
 
 // If you want to enable this feature for your bed heater,
 // uncomment the 2 defines below:
@@ -313,7 +320,7 @@ your extruder heater takes 2 minutes to hit the target on heating.
   // #define ENDSTOPPULLUP_XMAX
   // #define ENDSTOPPULLUP_YMAX
   // #define ENDSTOPPULLUP_ZMAX
-  // #define ENDSTOPPULLUP_XMIN
+   #define ENDSTOPPULLUP_XMIN
   // #define ENDSTOPPULLUP_YMIN
   // #define ENDSTOPPULLUP_ZMIN
 #endif
@@ -328,12 +335,12 @@ your extruder heater takes 2 minutes to hit the target on heating.
 #endif
 
 // The pullups are needed if you directly connect a mechanical endswitch between the signal and ground pins.
-const bool X_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool Y_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool Z_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool X_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool Y_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
+const bool X_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool Y_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool Z_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool X_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool Y_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
 //#define DISABLE_MAX_ENDSTOPS
 //#define DISABLE_MIN_ENDSTOPS
 
@@ -355,10 +362,10 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
 #define DISABLE_E false // For all extruders
 #define DISABLE_INACTIVE_EXTRUDER true //disable only inactive extruders and keep active extruder enabled
 
-#define INVERT_X_DIR true    // for Mendel set to false, for Orca set to true
-#define INVERT_Y_DIR true    // for Mendel set to true, for Orca set to false
-#define INVERT_Z_DIR true    // for Mendel set to false, for Orca set to true
-#define INVERT_E0_DIR true   // for direct drive extruder v9 set to true, for geared extruder set to false
+#define INVERT_X_DIR false    // for Mendel set to false, for Orca set to true
+#define INVERT_Y_DIR false    // for Mendel set to true, for Orca set to false
+#define INVERT_Z_DIR false    // for Mendel set to false, for Orca set to true
+#define INVERT_E0_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
 #define INVERT_E1_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
 #define INVERT_E2_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
 
@@ -449,7 +456,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
   #define XY_TRAVEL_SPEED 8000         // X and Y axis travel speed between probes, in mm/min
 
   #define Z_RAISE_BEFORE_PROBING 5  //How much the extruder will be raised before traveling to the first probing point.
-  #define Z_RAISE_BETWEEN_PROBINGS 1  //How much the extruder will be raised when traveling from between next probing points
+  #define Z_RAISE_BETWEEN_PROBINGS 5  //How much the extruder will be raised when traveling from between next probing points
   #define Z_RAISE_AFTER_PROBING 50  //How much the extruder will be raised after the last probing point.
 
   //#define Z_PROBE_SLED // turn on if you have a z-probe mounted on a sled like those designed by Charles Bell
@@ -493,7 +500,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
 // For deltabots this means top and center of the Cartesian print volume.
 #define MANUAL_X_HOME_POS 0
 #define MANUAL_Y_HOME_POS 0
-#define MANUAL_Z_HOME_POS 205  // For delta: Distance between nozzle and print surface after homing.
+#define MANUAL_Z_HOME_POS 229.85  // For delta: Distance between nozzle and print surface after homing.
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
@@ -502,17 +509,19 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
 // default settings
 
 #define XYZ_FULL_STEPS_PER_ROTATION 200
-#define XYZ_MICROSTEPS 32
+#define XYZ_MICROSTEPS 16
 #define XYZ_BELT_PITCH 2
 #define XYZ_PULLEY_TEETH 20
 #define XYZ_STEPS (XYZ_FULL_STEPS_PER_ROTATION * XYZ_MICROSTEPS / double(XYZ_BELT_PITCH) / double(XYZ_PULLEY_TEETH))
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {XYZ_STEPS, XYZ_STEPS, XYZ_STEPS, 204}
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   {XYZ_STEPS, XYZ_STEPS, XYZ_STEPS, 120}
+// tstruder is 210.120819471
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {XYZ_STEPS, XYZ_STEPS, XYZ_STEPS, 132.59} // Bowden - 4x microstepping
 #define DEFAULT_MAX_FEEDRATE          {200, 200, 200, 200}    // (mm/sec)
-#define DEFAULT_MAX_ACCELERATION      {9000,9000,9000,9000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
+#define DEFAULT_MAX_ACCELERATION      {2000,2000,2000,1000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
 
 #define DEFAULT_ACCELERATION          3000    // X, Y, Z and E max acceleration in mm/s^2 for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  3000   // X, Y, Z and E max acceleration in mm/s^2 for retracts
+#define DEFAULT_RETRACT_ACCELERATION  1000   // X, Y, Z and E max acceleration in mm/s^2 for retracts
 
 // Offset of the extruders (uncomment if using more than one and relying on firmware to position when changing).
 // The offset has to be X=0, Y=0 for the extruder 0 hotend (default extruder).
@@ -521,9 +530,9 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
 // #define EXTRUDER_OFFSET_Y {0.0, 5.00}  // (in mm) for each extruder, offset of the hotend on the Y axis
 
 // The speed change that does not require acceleration (i.e. the software might assume it can be done instantaneously)
-#define DEFAULT_XYJERK                20.0    // (mm/sec)
-#define DEFAULT_ZJERK                 20.0    // (mm/sec)
-#define DEFAULT_EJERK                 20.0    // (mm/sec)
+#define DEFAULT_XYJERK                15.0    // (mm/sec)
+#define DEFAULT_ZJERK                 15.0    // (mm/sec)
+#define DEFAULT_EJERK                 5.0    // (mm/sec)
 
 //===========================================================================
 //=============================Additional Features===========================
